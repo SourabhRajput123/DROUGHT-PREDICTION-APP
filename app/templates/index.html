@@ -4,33 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drought Prediction</title>
-    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h1>Drought Prediction Web App</h1>
-    <form id="prediction-form">
-        Latitude: <input type="text" id="latitude" name="latitude"><br>
-        Longitude: <input type="text" id="longitude" name="longitude"><br>
-        <button type="button" onclick="makePrediction()">Predict</button>
+    <h1>Drought Prediction</h1>
+    <form id="predictionForm">
+        Latitude: <input type="text" id="latitude" name="latitude" required><br>
+        Longitude: <input type="text" id="longitude" name="longitude" required><br>
+        <button type="submit">Predict</button>
     </form>
 
-    <div id="result"></div>
-
+    <div id="result"></div> <!-- Section to display the prediction result -->
+    
     <script>
-        function makePrediction() {
+        document.getElementById('predictionForm').addEventListener('submit', function(e) {
+            e.preventDefault();  // Prevent default form submission
             const latitude = document.getElementById('latitude').value;
             const longitude = document.getElementById('longitude').value;
-
+    
             fetch('/predict', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ latitude, longitude })
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ latitude, longitude }),
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {  // Check for a successful response
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
             .then(data => {
-                document.getElementById('result').innerText = 'Prediction: ' + data.drought_prediction;
+                document.getElementById('result').innerHTML = `
+                    <h2>Prediction Result</h2>
+                    <p>Drought Prediction: ${data.drought_prediction}</p>
+                `;  // Display the result
+            })
+            .catch((error) => {
+                document.getElementById('result').innerHTML = `
+                    <h2>Error</h2>
+                    <p>Something went wrong: ${error.message}</p>
+                `;
+                console.error('Error:', error);
             });
-        }
+        });
     </script>
+    
 </body>
 </html>
