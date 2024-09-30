@@ -1,0 +1,10 @@
+# Ignore temp folder
+__pycache__/
+.idea/
+
+# Ignore virtual environments
+venv/
+nvenv/
+
+# Ignore additional virtual environment names (optional)
+*.env
