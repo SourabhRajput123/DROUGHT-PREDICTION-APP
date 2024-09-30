@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 Flask
 numpy
 pandas
 scikit-learn
 matplotlib
 seaborn
+=======
+Flask
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+>>>>>>> ff399a1 (Compleated Project)
 joblib

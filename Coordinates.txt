@@ -1,0 +1,7 @@
+Joffre, Alabama, USA :32.536382	-86.64449
+Clayton, Alabama, USA :31.87067	-85.405456
+Verdon, Nebraska, USA:40.123743	-95.718603
+Randolph, New Jersey, USA :40.858581	-74.547427
+Warrenton, Virginia, USA : 38.744103	-77.821585
+Hampton, Virginia, USA :37.04803	-76.297149
+Teton County,Wyoming,USA:44.049321	-110.588102
